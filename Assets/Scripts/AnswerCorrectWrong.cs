@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnswerCorrectWrong : MonoBehaviour
 {
 
     public Material[]  mat = new Material[3];
+    public Sprite[] spr = new Sprite[2];
     int isAnyIcon = 0;
     bool isCorrect;
     public int getNumber = 0;
@@ -42,7 +44,7 @@ public class AnswerCorrectWrong : MonoBehaviour
 
             gameObject.GetComponent<MeshRenderer>().material = mat[isAnyIcon];
             uiController.answerIcon.SetActive(true);
-            /*uiController.answerIcon.GetComponent<Material>().ma = mat[isAnyIcon];*/
+            uiController.answerIcon.GetComponent<Image>().sprite = spr[isAnyIcon - 1];
 
             Debug.Log(isAnyIcon);
         }

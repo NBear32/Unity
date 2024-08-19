@@ -62,7 +62,7 @@ public class ObjectGenManager : MonoBehaviour
             uiController.QuizItem2.text = "";
             uiController.QuizItem3.text = "";
             uiController.Image.SetActive(false);
-            uiController.answerIcon.SetActive(true);
+            uiController.answerIcon.SetActive(false);
             uiController.UIText.text = "";
             Debug.Log("Επΐε");
             isExitOn = false;

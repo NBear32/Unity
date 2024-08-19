@@ -129,4 +129,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 2100000, guid: eb768c5c8f9f3b74fb595eb46adf6d7c, type: 2}
   - {fileID: 2100000, guid: dec1a53396a07d0408494b18815150f6, type: 2}
+  spr:
+  - {fileID: 21300000, guid: e2a69030b4db3e0488f9477b50be3455, type: 3}
+  - {fileID: 21300000, guid: 666feee878d47ff4cad033dada287191, type: 3}
   getNumber: 0
