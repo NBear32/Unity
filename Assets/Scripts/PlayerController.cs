@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     float SpeedKeep;
     public bool LockRotation = false;
     float timer = 0.0f;
-    float Damagedtimer = 0.0f;
+    float Statetimer = 0.0f;
     float waitingTime = 0.1f;
     private Vector3 Move;
     private Rigidbody Rigid;
@@ -28,8 +28,11 @@ public class PlayerController : MonoBehaviour
     string oldAnime = "";
 
     bool isObstacle = false;
+    bool isBoost = false;
 
     public GameObject runningEffect;
+    public GameObject boostEffect;
+    GameObject boostEft;
     public Material playerMaterial;
     CameraShake Camera;
 
@@ -42,8 +45,8 @@ public class PlayerController : MonoBehaviour
         nowAnime = stopAnime;
         oldAnime = stopAnime;
         moveSpeed = moveSpeedSet;
-        sceneName = SceneManager.GetActiveScene().name;
         SpeedKeep = moveSpeedSet;
+        sceneName = SceneManager.GetActiveScene().name;
         Camera = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
@@ -101,10 +104,10 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (nowAnime == runAnime)
+        if (nowAnime == runAnime && !isBoost)
         {
-            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
-            Instantiate(runningEffect, pos, Quaternion.Euler(0, transform.rotation.y, 0));
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 0.4f, transform.position.z);
+            Instantiate(runningEffect, pos, Quaternion.Euler(0, transform.position.y, 0));
         } 
 
         if (isObstacle)
@@ -113,14 +116,31 @@ public class PlayerController : MonoBehaviour
             Color color;
             ColorUtility.TryParseHtmlString("#FF7272", out color);
             playerMaterial.color = color;
-            Damagedtimer += Time.deltaTime;
-            if (Damagedtimer > 0.5f)
+            Statetimer += Time.deltaTime;
+            if (Statetimer > 0.5f)
             {
 
                 playerMaterial.color = Color.white;
                 moveSpeedSet = SpeedKeep;
                 isObstacle = false;
-                Damagedtimer = 0.0f;
+                Statetimer = 0.0f;
+            }
+        }
+        if (isBoost)
+        {
+            moveSpeedSet = 8;
+           /* Color color;
+            ColorUtility.TryParseHtmlString("#48D3FF", out color);
+            playerMaterial.color = color;*/
+            Statetimer += Time.deltaTime;
+            if (Statetimer > 3f)
+            {
+
+               /* playerMaterial.color = Color.white;*/
+                moveSpeedSet = SpeedKeep;
+                animator.SetFloat("RunningSpeed", 1);
+                isBoost = false;
+                Statetimer = 0.0f;
             }
         }
 
@@ -182,13 +202,29 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Obstacle")
         {
+            animator.SetFloat("RunningSpeed", 1);
             Camera.VibrateForTime(0.2f);
+            Statetimer = 0.0f;
+            isBoost = false;
+            if (boostEft) Destroy(boostEft);
             isObstacle = true;
         }
         if (collision.gameObject.tag == "Wall")
         {
             isObstacle = true;
             Rigid.AddForce(new Vector3(transform.position.x * 3, 0, transform.position.z * -3), ForceMode.VelocityChange);
+        }
+        if (collision.gameObject.tag == "Boost")
+        {
+            if (boostEft) Destroy(boostEft);
+            Statetimer = 0.0f;
+            isBoost = true;
+            animator.SetFloat("RunningSpeed", 2);
+
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+            boostEft = Instantiate(boostEffect, pos, Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
+            boostEft.transform.parent = this.transform;
+            Destroy(boostEft, 3.0f);
         }
     }
 }

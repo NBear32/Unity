@@ -13,11 +13,14 @@ public class AnswerCorrectWrong : MonoBehaviour
     public int getNumber = 0;
     UIController uiController;
 
+    CameraShake Camera;
+
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponent<MeshRenderer>().material = mat[isAnyIcon];
         uiController = GameObject.FindGameObjectWithTag("UITextBar").GetComponent<UIController>();
+        Camera = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -45,6 +48,10 @@ public class AnswerCorrectWrong : MonoBehaviour
             gameObject.GetComponent<MeshRenderer>().material = mat[isAnyIcon];
             uiController.answerIcon.SetActive(true);
             uiController.answerIcon.GetComponent<Image>().sprite = spr[isAnyIcon - 1];
+            if (isAnyIcon == 1)
+            {
+                Camera.VibrateForTime(0.2f);
+            }
 
             Debug.Log(isAnyIcon);
         }

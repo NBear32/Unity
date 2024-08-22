@@ -31,7 +31,6 @@ public class CameraShake : MonoBehaviour
         {
             transform.position = Random.insideUnitSphere * ShakeAmount + initialPosition;
             ShakeTime -= Time.deltaTime;
-            Debug.Log(transform.position);
         }
         else
         {

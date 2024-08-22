@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI QuizItem1;
     public TextMeshProUGUI QuizItem2;
     public TextMeshProUGUI QuizItem3;
+    public TextMeshProUGUI QuizItem4;
     public GameObject ready;
     public GameObject three;
     public GameObject two;
