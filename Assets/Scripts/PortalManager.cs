@@ -117,24 +117,30 @@ public class PortalManager : MonoBehaviour
         {
             isPortal = true;
             uiController.Image.SetActive(true);
-            if (Roomname != null) uiController.UIText.text = Roomname;
-            if (Roomname == "공지사항")
-            {
+        if (Roomname != null) uiController.UIText.text = Roomname;
+        if (Roomname == "공지사항" ||
+            Roomname == "회원정보" ||
+            Roomname == "회원탈퇴" ||
+            Roomname == "나의학습" ||
+            Roomname == "장바구니" ||
+            Roomname == "이벤트" ||
+            Roomname == "질의응답 ")
+        {
 
-                Debug.Log("OnTriggerEnter PortalManager!!! => React Load!!!: " + Roomname);
+            Debug.Log("OnTriggerEnter PortalManager!!! => React Load!!!: " + Roomname);
 
-                /* 다른 React Window 에서 Keyboard Input 및 PauseGame */
+            //다른 React Window 에서 Keyboard Input 및 PauseGame
                 PauseGame();
-                // extern 함수 호출, WEBGL 로 Message 전달
+            // extern 함수 호출, WEBGL 로 Message 전달
 #if UNITY_WEBGL == true && UNITY_EDITOR == false
                     OpenReactWindow(Roomname); // 윈도우 오픈(공지사항)
                     // NoticesStart(); // 공지사항 위도우 오픈 alert
 #endif
-            }
         }
     }
+}
 
-    private void OnTriggerStay(Collider col)
+        private void OnTriggerStay(Collider col)
     {
         if (90 < portalNum) return;
 
