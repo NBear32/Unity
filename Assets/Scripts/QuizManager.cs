@@ -18,7 +18,7 @@ public class QuizManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isEnterOn)
+/*        if (isEnterOn)
         {
             uiController.Image.SetActive(true);
             GameObject.FindGameObjectWithTag("QuizItem").SetActive(true);
@@ -39,6 +39,6 @@ public class QuizManager : MonoBehaviour
             uiController.UIText.text = "";
             Debug.Log("Επΐε");
             isExitOn = false;
-        }
+        }*/
     }
 }

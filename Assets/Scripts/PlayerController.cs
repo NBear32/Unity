@@ -7,6 +7,31 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
 
+    private bool isPaused = false;
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0 : 1; // 게임 시간의 흐름을 멈추거나 다시 시작
+    }
+
+    public void PauseGame()
+    {
+        /* 다른 React Window 에서 Keyboard Input => 적용후 timeScale 0 으로 세팅 */
+        WebGLInput.captureAllKeyboardInput = false;
+
+        isPaused = true;
+        Time.timeScale = 0;
+    }
+
+    public void ContinueGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1;
+
+        /* Player 이동 등 Keyboard Input => timeScale 1로 세팅후 적용 */
+        WebGLInput.captureAllKeyboardInput = true;
+    }
+
     public float moveSpeedSet = 4f;
     float moveSpeed;
     float SpeedKeep;

@@ -8,7 +8,7 @@ public class AnswerCorrectWrong : MonoBehaviour
 
     public Material[]  mat = new Material[3];
     public Sprite[] spr = new Sprite[2];
-    int isAnyIcon = 0;
+    int switchIcon = 0;
     bool isCorrect;
     public int getNumber = 0;
     UIController uiController;
@@ -18,7 +18,7 @@ public class AnswerCorrectWrong : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<MeshRenderer>().material = mat[isAnyIcon];
+        gameObject.GetComponent<MeshRenderer>().material = mat[switchIcon];
         uiController = GameObject.FindGameObjectWithTag("UITextBar").GetComponent<UIController>();
         Camera = GameObject.FindWithTag("MainCamera").GetComponent<CameraShake>();
     }
@@ -38,22 +38,22 @@ public class AnswerCorrectWrong : MonoBehaviour
         {
             if (isCorrect == false)
             {
-                isAnyIcon = isAnyIcon = 1;
+                switchIcon = switchIcon = 1;
             }
             else if (isCorrect == true)
             {
-                isAnyIcon = isAnyIcon = 2;
+                switchIcon = 2;
             }
 
-            gameObject.GetComponent<MeshRenderer>().material = mat[isAnyIcon];
+            gameObject.GetComponent<MeshRenderer>().material = mat[switchIcon];
             uiController.answerIcon.SetActive(true);
-            uiController.answerIcon.GetComponent<Image>().sprite = spr[isAnyIcon - 1];
-            if (isAnyIcon == 1)
+            uiController.answerIcon.GetComponent<Image>().sprite = spr[switchIcon - 1];
+            if (switchIcon == 1)
             {
                 Camera.VibrateForTime(0.2f);
             }
 
-            Debug.Log(isAnyIcon);
+            Debug.Log(switchIcon);
         }
     }
 }

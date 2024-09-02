@@ -16,6 +16,115 @@ public class ObjectGenManager : MonoBehaviour
     public bool isShuffled = false;
     UIController uiController;
 
+    public string question;
+    public string answer1;
+    public string answer2;
+    public string answer3;
+    public string answer4;
+    public int correctAnswer;
+
+    public int qnum = 0;
+
+
+
+
+
+
+
+    private bool isPaused = false;
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = isPaused ? 0 : 1; // 게임 시간의 흐름을 멈추거나 다시 시작
+    }
+
+    public void PauseGame()
+    {
+        /* 다른 React Window 에서 Keyboard Input => 적용후 timeScale 0 으로 세팅 */
+        WebGLInput.captureAllKeyboardInput = false;
+
+        isPaused = true;
+        Time.timeScale = 0;
+    }
+
+    public void ContinueGame()
+    {
+        isPaused = false;
+        Time.timeScale = 1;
+
+        /* Player 이동 등 Keyboard Input => timeScale 1로 세팅후 적용 */
+        WebGLInput.captureAllKeyboardInput = true;
+    }
+
+    [System.Serializable]
+    public class MyData
+    {
+        public string lectureId;
+        public long lectureContentSeq;
+        public int questionSeq;
+        public string question;
+        public string answer1;
+        public string answer2;
+        public string answer3;
+        public string answer4;
+        public int correctAnswer;
+
+        //        "lectureId": "L00000000052",
+        //        "lectureContentSeq": 3,
+        //        "questionSeq": 1,
+        //        "question": "다음 중 HTML5의 시맨틱 태크 (Semantic Tag)가 아닌 것은?",
+        //        "answer1": "head",
+        //        "answer2": "nav",
+        //        "answer3": "aside",
+        //        "answer4": "footer",
+        //        "correctAnswer": 1
+
+    }
+
+    [System.Serializable]
+    public class MyDataArrayWrapper
+    {
+        public MyData[] items;
+    }
+
+    MyData[] Questions;
+
+    public void ReceiveJsonData(string jsonData)
+    {
+
+        Debug.Log("Unity Received JSON: " + jsonData);
+
+        // JSON 문자열을 MyDataArrayWrapper 객체로 변환
+        var wrapper = JsonUtility.FromJson<MyDataArrayWrapper>("{\"items\":" + jsonData + "}");
+
+        // 래퍼에서 MyData 배열을 추출
+        MyData[] dataArray = wrapper.items;
+
+        // 데이터 처리 로직
+        if (dataArray != null && dataArray.Length > 0)
+        {
+            foreach (var data in dataArray)
+            {
+                Debug.Log($"Received data: lectureId = {data.lectureId}, lectureContentSeq = {data.lectureContentSeq}, questionSeq = {data.questionSeq}," +
+                    $" Question = {data.question}, Answer1 = {data.answer1}, Answer2 = {data.answer2}, Answer3 = {data.answer3}, Answer4 = {data.answer4}, correctAnswer = {data.correctAnswer}");
+            }
+
+            Questions = dataArray;
+            Debug.Log("문제 2: " + dataArray[1].question);
+        }
+        else
+        {
+            Debug.Log("No data received or data is null.");
+        }
+    }
+
+
+
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,13 +156,18 @@ public class ObjectGenManager : MonoBehaviour
 
             if (!isShuffled)
             {
-                uiController.UIText.text = "웹에 공개된 정보를 탐색하기 위한 프로그램은?";
-                string[] q1 = { "웹브라우저\n(Web Browser)", "1" };
-                string[] q2 = { "웹에디터\n(Web Editor)", "2" };
-                string[] q3 = { "데이터베이스\n(database)", "3" };
-                string[] q4 = { "하이브리드앱\n(Hybrid App)", "4" };
+                question = Questions[qnum].question;
+                answer1 = Questions[qnum].answer1;
+                answer2 = Questions[qnum].answer2;
+                answer3 = Questions[qnum].answer3;
+                answer4 = Questions[qnum].answer4;
+                correctAnswer = Questions[qnum].correctAnswer;
 
-                int qCorrect = 1;
+                uiController.UIText.text = question;
+                string[] q1 = { answer1, "1" };
+                string[] q2 = { answer2, "2" };
+                string[] q3 = { answer3, "3" };
+                string[] q4 = { answer4, "4" };
 
                 qNumberSort = new string[][] { q1, q2, q3, q4 };
 
@@ -61,11 +175,11 @@ public class ObjectGenManager : MonoBehaviour
 
                 for (int i = 0; i < objGens.Length; i++)
                 {
-                    if (int.Parse(qNumberSort[i][1]) == qCorrect)
+                    if (int.Parse(qNumberSort[i][1]) == correctAnswer)
                     {
                         Debug.Log("qNumberSort: " + int.Parse(qNumberSort[i][1]));
                         Debug.Log("qNumberQuiz: " + qNumberSort[i][0]);
-                        Debug.Log("qCorrect: " + qCorrect);
+                        Debug.Log("Correct: " + correctAnswer);
                         objGens[i].isCorrect = true;
                     }
                 }
@@ -94,8 +208,11 @@ public class ObjectGenManager : MonoBehaviour
             uiController.Image.SetActive(false);
             uiController.answerIcon.SetActive(false);
             uiController.UIText.text = "";
-
             Debug.Log("퇴장");
+            if (qnum <= 2)
+            {
+                qnum = qnum + 1;
+            }
             isExitOn = false;
         }
 

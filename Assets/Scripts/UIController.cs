@@ -25,7 +25,6 @@ public class UIController : MonoBehaviour
     float timer = 0.0f;
     float waitingTime = 1.0f;
 
-
     // Start is called before the first frame update
     void Start()
     {
