@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 7525908349588049186}
   m_Layer: 5
   m_Name: Panel
-  m_TagString: Untagged
+  m_TagString: RunningMapQuizPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -757,6 +757,7 @@ GameObject:
   - component: {fileID: 3893112268621326547}
   - component: {fileID: 351810184627242921}
   - component: {fileID: 3890112773641074600}
+  - component: {fileID: 3818805178525522124}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -824,6 +825,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3818805178525522124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544833309644286624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: 1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &6134855031928719119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,6 +1945,7 @@ MonoBehaviour:
   one: {fileID: 8103525809155366343}
   start: {fileID: 3421066622522523082}
   answerIcon: {fileID: 6728518354984593650}
+  Questions: []
 --- !u!1 &9130224844068736521
 GameObject:
   m_ObjectHideFlags: 0

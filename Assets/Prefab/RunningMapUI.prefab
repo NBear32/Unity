@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 1171479372715264792}
   m_Layer: 5
   m_Name: RunningMapUI
-  m_TagString: Untagged
+  m_TagString: RunningMapUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

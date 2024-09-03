@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System.Runtime.InteropServices;
 
@@ -122,14 +123,52 @@ public class UIController : MonoBehaviour
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-
+    private void Awake()
+    {
+        sceneStatusManager = GameObject.FindGameObjectWithTag("SceneStatus");
+    }
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
+
+        Debug.Log("");
+
+        if (SceneManager.GetActiveScene().name == "RunningMap")
+        {
+            GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(true);
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(false);
+        }
+
         Image.SetActive(false);
         UIText.text = "";
-        sceneStatusManager = GameObject.FindGameObjectWithTag("SceneStatus");
+        if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Ready)
+        {
+            ready.SetActive(true);
+        }
+        answerIcon.SetActive(false);
+
+        SceneManager.sceneLoaded += UIChangeStatus;
+    }   
+
+    private void UIChangeStatus(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("");
+        Image.SetActive(false);
+
+        if (SceneManager.GetActiveScene().name == "RunningMap")
+        {
+            GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(true);
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(false);
+        }
+
+        UIText.text = "";
         if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Ready)
         {
             ready.SetActive(true);

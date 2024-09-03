@@ -16,9 +16,25 @@ public class SceneStatusManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
+
         if (SceneManager.GetActiveScene().name == "RunningMap")
         {
-           sceneState = SceneStatus.Ready;
+            sceneState = SceneStatus.Ready;
+        }
+        else
+        {
+            sceneState = SceneStatus.Start;
+        }
+
+        SceneManager.sceneLoaded += SceneChangeStatus;
+    }
+
+    private void SceneChangeStatus(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name == "RunningMap")
+        {
+            sceneState = SceneStatus.Ready;
         }
         else
         {
@@ -26,8 +42,8 @@ public class SceneStatusManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+   // Update is called once per frame
+   void Update()
     {
         
     }
