@@ -2081,6 +2081,7 @@ MonoBehaviour:
   two: {fileID: 487609710444367899}
   one: {fileID: 8103525809155366343}
   start: {fileID: 3421066622522523082}
+  finish: {fileID: 163045314668723236}
   answerIcon: {fileID: 6728518354984593650}
   RunningMapQuizPanel: {fileID: 973071943497082683}
   EnterKeyInfo: {fileID: 9130224844068736521}

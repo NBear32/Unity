@@ -21,6 +21,7 @@ public class UIController : MonoBehaviour
     public GameObject two;
     public GameObject one;
     public GameObject start;
+    public GameObject finish;
     public GameObject answerIcon;
     public GameObject RunningMapQuizPanel;
     public GameObject EnterKeyInfo;
@@ -222,6 +223,20 @@ void Update()
                 statusCount = statusCount - 1;
                 timer = 0.0f;
             }
+        }
+
+        if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Finish)
+        {
+            finish.SetActive(true);
+            timer += Time.deltaTime;
+            if (timer > waitingTime)
+            {
+                finish.SetActive(false);
+            }
+        }
+        else
+        {
+            finish.SetActive(false);
         }
     }
 }

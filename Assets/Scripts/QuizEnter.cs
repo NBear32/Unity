@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuizEnter : MonoBehaviour
 {
     public bool isExit = false;
+    public bool isFinish = false;
     public GameObject QuizGenPoint;
     ObjectGenManager objectGenManager;
     AnswerCorrectWrong answerCorrectWrong;
@@ -30,6 +31,11 @@ public class QuizEnter : MonoBehaviour
         else if (isExit)
         {
             objectGenManager.isExitOn = true;
+        }
+
+        if (!isFinish)
+        {
+            GetComponent<SceneStatusManager>().sceneState = SceneStatusManager.SceneStatus.Finish;
         }
     }
 }

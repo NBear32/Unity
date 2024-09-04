@@ -8,7 +8,8 @@ public class SceneStatusManager : MonoBehaviour
     {
         Ready,
         Set,
-        Start
+        Start,
+        Finish
     }
 
     public SceneStatus sceneState;
