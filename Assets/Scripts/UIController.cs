@@ -138,7 +138,7 @@ public class UIController : MonoBehaviour
         {
             GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(true);
         }
-        else
+        if (SceneManager.GetActiveScene().name != "RunningMap")
         {
             GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(false);
         }
@@ -156,18 +156,19 @@ public class UIController : MonoBehaviour
 
     private void UIChangeStatus(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("");
-        Image.SetActive(false);
+        Debug.Log("UIChangeStatus");
+        Debug.Log(SceneManager.GetActiveScene().name);
 
         if (SceneManager.GetActiveScene().name == "RunningMap")
         {
             GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(true);
         }
-        else
+        if (SceneManager.GetActiveScene().name != "RunningMap")
         {
             GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(false);
         }
 
+        Image.SetActive(true);
         UIText.text = "";
         if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Ready)
         {
