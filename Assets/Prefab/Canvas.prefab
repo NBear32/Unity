@@ -1945,6 +1945,7 @@ MonoBehaviour:
   one: {fileID: 8103525809155366343}
   start: {fileID: 3421066622522523082}
   answerIcon: {fileID: 6728518354984593650}
+  RunningMapQuizPanel: {fileID: 973071943497082683}
   Questions: []
 --- !u!1 &9130224844068736521
 GameObject:

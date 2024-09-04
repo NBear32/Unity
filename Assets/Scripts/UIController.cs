@@ -22,6 +22,7 @@ public class UIController : MonoBehaviour
     public GameObject one;
     public GameObject start;
     public GameObject answerIcon;
+    public GameObject RunningMapQuizPanel;
 
     int statusCount = 5;
     float timer = 0.0f;
@@ -132,15 +133,16 @@ public class UIController : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
 
-        Debug.Log("");
+        Debug.Log(SceneManager.GetActiveScene().name);
+        Debug.Log(SceneManager.GetActiveScene().name == "RunningMap");
 
         if (SceneManager.GetActiveScene().name == "RunningMap")
         {
-            GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(true);
+            RunningMapQuizPanel.SetActive(true);
         }
-        if (SceneManager.GetActiveScene().name != "RunningMap")
+        else if (SceneManager.GetActiveScene().name != "RunningMap")
         {
-            GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(false);
+            RunningMapQuizPanel.SetActive(false);
         }
 
         Image.SetActive(false);
@@ -157,28 +159,19 @@ public class UIController : MonoBehaviour
     private void UIChangeStatus(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("UIChangeStatus");
-        Debug.Log(SceneManager.GetActiveScene().name);
 
         if (SceneManager.GetActiveScene().name == "RunningMap")
         {
-            GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(true);
-        }
-        if (SceneManager.GetActiveScene().name != "RunningMap")
-        {
-            GameObject.FindGameObjectWithTag("RunningMapQuizPanel").SetActive(false);
-        }
-
-        Image.SetActive(true);
-        UIText.text = "";
-        if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Ready)
-        {
-            ready.SetActive(true);
+            RunningMapQuizPanel.SetActive(true);
         }
         answerIcon.SetActive(false);
+
+        Image.SetActive(false);
+        UIText.text = "";
     }
 
-    // Update is called once per frame
-    void Update()
+// Update is called once per frame
+void Update()
     {
         
     }
