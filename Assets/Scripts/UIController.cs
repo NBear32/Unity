@@ -23,6 +23,7 @@ public class UIController : MonoBehaviour
     public GameObject start;
     public GameObject answerIcon;
     public GameObject RunningMapQuizPanel;
+    public GameObject EnterKeyInfo;
 
     int statusCount = 5;
     float timer = 0.0f;
@@ -139,10 +140,12 @@ public class UIController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "RunningMap")
         {
             RunningMapQuizPanel.SetActive(true);
+            EnterKeyInfo.SetActive(false);
         }
         else if (SceneManager.GetActiveScene().name != "RunningMap")
         {
             RunningMapQuizPanel.SetActive(false);
+            EnterKeyInfo.SetActive(true);
         }
 
         Image.SetActive(false);
@@ -163,6 +166,12 @@ public class UIController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "RunningMap")
         {
             RunningMapQuizPanel.SetActive(true);
+            EnterKeyInfo.SetActive(false);
+        }
+        else if (SceneManager.GetActiveScene().name != "RunningMap")
+        {
+            RunningMapQuizPanel.SetActive(false);
+            EnterKeyInfo.SetActive(true);
         }
         answerIcon.SetActive(false);
 
