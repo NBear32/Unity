@@ -124,7 +124,8 @@ public class PortalManager : MonoBehaviour
             Roomname == "나의학습" ||
             Roomname == "장바구니" ||
             Roomname == "이벤트" ||
-            Roomname == "질문응답" ||
+            Roomname == "질의응답" ||
+            Roomname == "로그아웃" ||
             Roomname == "강의" ||
             Roomname == "회원관리" ||
             Roomname == "강의관리" ||
