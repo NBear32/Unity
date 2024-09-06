@@ -13,6 +13,7 @@ public class ObjectGenManager : MonoBehaviour
     GameObject[] objectGenPoints;
     public bool isEnterOn = false;
     public bool isExitOn = false;
+    public bool isFinishOn = false;
     public bool isShuffled = false;
     UIController uiController;
 
@@ -50,6 +51,12 @@ public class ObjectGenManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isFinishOn)
+        {
+            Debug.Log(isFinishOn);
+            return;
+        }
+
         if (isEnterOn)
         {
             uiController.Image.SetActive(true);

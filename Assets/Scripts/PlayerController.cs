@@ -170,8 +170,16 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Ready)
+        float moveDistanceZ = Input.GetAxisRaw("Vertical");
+        float moveDistanceX = Input.GetAxisRaw("Horizontal");
+
+        if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Ready ||
+            sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Finish)
         {
+            moveDistanceX = 0.0f;
+            moveDistanceZ = 0.0f;
+            nowAnime = stopAnime;
+            animator.Play(nowAnime);
             return;
         }
 
@@ -184,12 +192,11 @@ public class PlayerController : MonoBehaviour
             moveSpeed = moveSpeedSet;
         }
 
-        float moveDistanceZ = Input.GetAxisRaw("Vertical");
+       
         if (sceneName == "RunningMap")
         {
             moveDistanceZ = 1.0f;
         }
-        float moveDistanceX = Input.GetAxisRaw("Horizontal");
 
         Move = new Vector3(moveDistanceX, 0, moveDistanceZ);
 

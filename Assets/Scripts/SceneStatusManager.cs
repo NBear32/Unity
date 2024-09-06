@@ -7,7 +7,6 @@ public class SceneStatusManager : MonoBehaviour
     public enum SceneStatus
     {
         Ready,
-        Set,
         Start,
         Finish
     }

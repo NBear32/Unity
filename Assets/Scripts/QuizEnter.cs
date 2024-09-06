@@ -24,18 +24,19 @@ public class QuizEnter : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (!isExit)
+        if (isFinish)
+        {
+            objectGenManager.isFinishOn = true;
+            GameObject.FindGameObjectWithTag("SceneStatus").GetComponent<SceneStatusManager>().sceneState = SceneStatusManager.SceneStatus.Finish;
+            Debug.Log("isFinish");
+        }
+        else if (!isExit)
         {
             objectGenManager.isEnterOn = true;
         }
         else if (isExit)
         {
             objectGenManager.isExitOn = true;
-        }
-
-        if (!isFinish)
-        {
-            GetComponent<SceneStatusManager>().sceneState = SceneStatusManager.SceneStatus.Finish;
         }
     }
 }

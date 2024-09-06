@@ -26,9 +26,11 @@ public class UIController : MonoBehaviour
     public GameObject RunningMapQuizPanel;
     public GameObject EnterKeyInfo;
 
-    int statusCount = 5;
+    int statusCount = 4;
     float timer = 0.0f;
     float waitingTime = 1.0f;
+
+    bool isTimeEnd = false;
 
     [DllImport("__Internal")]
     private static extern void MyJSFunction(string message);
@@ -188,49 +190,59 @@ void Update()
 
     private void FixedUpdate()
     {
-        if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState != SceneStatusManager.SceneStatus.Start)
+        Debug.Log(sceneStatusManager.GetComponent<SceneStatusManager> ().sceneState);
+        if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState != SceneStatusManager.SceneStatus.Start &&
+            sceneStatusManager.GetComponent<SceneStatusManager>().sceneState != SceneStatusManager.SceneStatus.Finish)
         {
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {
-                if (statusCount == 4)
+                if (statusCount == 3)
                 {
                     ready.SetActive(false);
                     three.SetActive(true);
                 }
-                else if (statusCount == 3)
+                else if (statusCount == 2)
                 {
                     three.SetActive(false);
                     two.SetActive(true);
                 }
-                else if (statusCount == 2)
+                else if (statusCount == 1)
                 {
                     two.SetActive(false);
                     one.SetActive(true);
                 }
-                else if (statusCount == 1)
+                else if (statusCount == 0)
                 {
-                    sceneStatusManager.GetComponent<SceneStatusManager>().sceneState = SceneStatusManager.SceneStatus.Set;
+                    sceneStatusManager.GetComponent<SceneStatusManager>().sceneState = SceneStatusManager.SceneStatus.Start;
                     one.SetActive(false);
                     start.SetActive(true);
                     waitingTime = 1.2f;
-                }
-                else if (statusCount == 0)
-                {
-                    start.SetActive(false);
-                    sceneStatusManager.GetComponent<SceneStatusManager>().sceneState = SceneStatusManager.SceneStatus.Start;
+                    isTimeEnd = true;
                 }
                 statusCount = statusCount - 1;
                 timer = 0.0f;
             }
         }
 
-        if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Finish)
+        if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Start && isTimeEnd)
+        {
+            timer += Time.deltaTime;
+            if (timer > waitingTime)
+            {
+                start.SetActive(false);
+                //sceneStatusManager.GetComponent<SceneStatusManager>().sceneState = SceneStatusManager.SceneStatus.Start;
+                timer = 0.0f;
+                isTimeEnd = false;
+            }
+        }
+        else if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Finish)
         {
             finish.SetActive(true);
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {
+                start.SetActive(false);
                 finish.SetActive(false);
             }
         }
