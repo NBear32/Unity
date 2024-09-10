@@ -473,6 +473,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5927946293651329940, guid: 19d64a5b447cb5742aad1e13b3aa4938,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6183146255176381562, guid: 19d64a5b447cb5742aad1e13b3aa4938,
         type: 3}
       propertyPath: m_RootOrder
@@ -5800,6 +5805,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7982363129576253627, guid: f10375ce50fcbe6498b0f617dd4421b1,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f10375ce50fcbe6498b0f617dd4421b1, type: 3}
 --- !u!1001 &523719097
@@ -7152,6 +7162,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3383195295355592944, guid: 94d0839dcb694e14ca408eb69ee43c27,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94d0839dcb694e14ca408eb69ee43c27, type: 3}
@@ -10059,6 +10074,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 995783245632192460, guid: cbf764c2f260db145839a693bff3c076,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbf764c2f260db145839a693bff3c076, type: 3}
@@ -13354,6 +13374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PrefebNPCTy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5459905974102288393, guid: 3cada008410dca348bac50e2aa61f882,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5498828019316524117, guid: 3cada008410dca348bac50e2aa61f882,
         type: 3}

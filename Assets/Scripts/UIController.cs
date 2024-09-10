@@ -190,6 +190,7 @@ public class UIController : MonoBehaviour
 
     private void UIChangeStatus(Scene scene, LoadSceneMode mode)
     {
+        UI.SetActive(true);
         Debug.Log("UIChangeStatus");
 
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerName.text = playerName;
