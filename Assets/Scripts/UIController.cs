@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 public class UIController : MonoBehaviour
 {
-
+    RunningResultUIController runningResultUIController;
     GameObject sceneStatusManager;
     public GameObject Image;
     public TextMeshProUGUI UIText;
@@ -25,6 +25,9 @@ public class UIController : MonoBehaviour
     public GameObject answerIcon;
     public GameObject RunningMapQuizPanel;
     public GameObject EnterKeyInfo;
+    public GameObject UI;
+    public GameObject RunningUI;
+    public bool[] RunningResult;
 
     int statusCount = 4;
     float timer = 0.0f;
@@ -136,6 +139,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
+        //RunningResultMap.SetActive(false);
 
         Debug.Log(SceneManager.GetActiveScene().name);
         Debug.Log(SceneManager.GetActiveScene().name == "RunningMap");
@@ -244,6 +248,9 @@ void Update()
             {
                 start.SetActive(false);
                 finish.SetActive(false);
+                UI.SetActive(false);
+                RunningUI.SetActive(true);
+                RunningUI.GetComponent<RunningResultUIController>().ResultScreenOpen();
             }
         }
         else
