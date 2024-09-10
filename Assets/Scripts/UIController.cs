@@ -223,6 +223,7 @@ void Update()
         if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState != SceneStatusManager.SceneStatus.Start &&
             sceneStatusManager.GetComponent<SceneStatusManager>().sceneState != SceneStatusManager.SceneStatus.Finish)
         {
+            if (statusCount == 4) { ready.SetActive(true); }
             timer += Time.deltaTime;
             if (timer > waitingTime)
             {
