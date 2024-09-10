@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class RunningResultUIController : MonoBehaviour
 {
     public TextMeshProUGUI ResultScore;
-    UIController uiController;
-    public GameObject[] Result;
+    public GameObject[] Result = new GameObject[3];
     public Sprite[] spr = new Sprite[2];
     int score = 0;
 
@@ -16,14 +15,13 @@ public class RunningResultUIController : MonoBehaviour
 
     private void Awake()
     {
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         GameObject gameUI = GameObject.FindGameObjectWithTag("UITextBar");
-        uiController = GameObject.FindGameObjectWithTag("UITextBar").GetComponent<UIController>();
         gameUI.SetActive(false);
     }
 
@@ -35,16 +33,19 @@ public class RunningResultUIController : MonoBehaviour
 
     public void ResultScreenOpen()
     {
+        UIController uiController = GameObject.FindGameObjectWithTag("UITextBar").GetComponent<UIController>();
         for (int i = 0; i < Result.Length; i++)
         {
-            if (uiController.RunningResult[i] == true)
+            if (uiController.RunningResult[i + 1] == true)
             {
                 Result[i].GetComponent<Image>().sprite = spr[0];
                 score = score + 1;
+                Debug.Log("Result" + i + ": true");
             }
-            else if (uiController.RunningResult[i] == false)
+            else if (uiController.RunningResult[i + 1] == false)
             {
                 Result[i].GetComponent<Image>().sprite = spr[1];
+                Debug.Log("Result" + i + ": false");
             }
         }
 

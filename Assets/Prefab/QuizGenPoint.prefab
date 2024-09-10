@@ -72,7 +72,15 @@ MonoBehaviour:
   howManyEmptyPoint: 0
   isEnterOn: 0
   isExitOn: 0
+  isFinishOn: 0
   isShuffled: 0
+  question: 
+  answer1: 
+  answer2: 
+  answer3: 
+  answer4: 
+  correctAnswer: 0
+  qnum: 0
 --- !u!1001 &2942299978307753964
 PrefabInstance:
   m_ObjectHideFlags: 0

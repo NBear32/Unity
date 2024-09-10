@@ -49,6 +49,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8747c7051a326a741a31b447f87db377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objGens: []
+  howManyEmptyPoint: 2
+  isEnterOn: 0
+  isExitOn: 0
+  isFinishOn: 0
+  isShuffled: 0
+  question: 
+  answer1: 
+  answer2: 
+  answer3: 
+  answer4: 
+  correctAnswer: 0
+  qnum: 0
 --- !u!1001 &545833497319695277
 PrefabInstance:
   m_ObjectHideFlags: 0

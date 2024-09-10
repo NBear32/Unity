@@ -110,10 +110,7 @@ public class PortalManager : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider col)
-    {
-        if (90 < portalNum) return;
-
-        
+    {  
     }
 
         private void OnTriggerStay(Collider col)
@@ -130,6 +127,7 @@ public class PortalManager : MonoBehaviour
 
         if (col.gameObject.tag == "Player" && !isPortalLock && (Input.GetKey(KeyCode.F) || Input.GetKey(KeyCode.Space)))
         {
+            GameObject.FindGameObjectWithTag("UITextBar").GetComponent<UIController>();
             isPortal = true;
             uiController.Image.SetActive(true);
             if (Roomname != null) uiController.UIText.text = Roomname;

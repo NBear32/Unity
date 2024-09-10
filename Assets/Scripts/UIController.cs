@@ -26,8 +26,9 @@ public class UIController : MonoBehaviour
     public GameObject RunningMapQuizPanel;
     public GameObject EnterKeyInfo;
     public GameObject UI;
-    public GameObject RunningUI;
+    public GameObject RunningResultUI;
     public bool[] RunningResult;
+    public bool isRunningEnd = false;
 
     int statusCount = 4;
     float timer = 0.0f;
@@ -38,6 +39,15 @@ public class UIController : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void MyJSFunction(string message);
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // 240910 Ãß°¡
+
+    private string playerName;
+
+    [DllImport("__Internal")]
+    private static extern void GameReady();
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -139,7 +149,7 @@ public class UIController : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        //RunningResultMap.SetActive(false);
+        RunningResultUI.SetActive(false);
 
         Debug.Log(SceneManager.GetActiveScene().name);
         Debug.Log(SceneManager.GetActiveScene().name == "RunningMap");
@@ -164,11 +174,26 @@ public class UIController : MonoBehaviour
         answerIcon.SetActive(false);
 
         SceneManager.sceneLoaded += UIChangeStatus;
-    }   
+
+#if UNITY_WEBGL == true && UNITY_EDITOR == false
+        GameReady();
+#endif
+
+    }
+
+    public void SetPlayerName(string name)
+    {
+        playerName = name;
+        Debug.Log("Player name set to: " + playerName);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerName.text = playerName;
+    }
 
     private void UIChangeStatus(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("UIChangeStatus");
+
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().playerName.text = playerName;
+        RunningResultUI.SetActive(false);
 
         if (SceneManager.GetActiveScene().name == "RunningMap")
         {
@@ -194,7 +219,6 @@ void Update()
 
     private void FixedUpdate()
     {
-        Debug.Log(sceneStatusManager.GetComponent<SceneStatusManager> ().sceneState);
         if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState != SceneStatusManager.SceneStatus.Start &&
             sceneStatusManager.GetComponent<SceneStatusManager>().sceneState != SceneStatusManager.SceneStatus.Finish)
         {
@@ -240,7 +264,7 @@ void Update()
                 isTimeEnd = false;
             }
         }
-        else if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Finish)
+        else if (sceneStatusManager.GetComponent<SceneStatusManager>().sceneState == SceneStatusManager.SceneStatus.Finish && isRunningEnd == false)
         {
             finish.SetActive(true);
             timer += Time.deltaTime;
@@ -249,13 +273,14 @@ void Update()
                 start.SetActive(false);
                 finish.SetActive(false);
                 UI.SetActive(false);
-                RunningUI.SetActive(true);
-                RunningUI.GetComponent<RunningResultUIController>().ResultScreenOpen();
+                RunningResultUI.SetActive(true);
+                RunningResultUI.GetComponent<RunningResultUIController>().ResultScreenOpen();
+                isRunningEnd = true;
             }
         }
-        else
+/*        else
         {
             finish.SetActive(false);
-        }
+        }*/
     }
 }

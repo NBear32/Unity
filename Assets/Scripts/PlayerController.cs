@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.Component;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     float moveSpeed;
     float SpeedKeep;
     public bool LockRotation = false;
+    public TextMeshPro playerName;
     float timer = 0.0f;
     float Statetimer = 0.0f;
     float waitingTime = 0.1f;

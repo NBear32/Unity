@@ -24,10 +24,15 @@ public class ObjectGenPoint : MonoBehaviour
         
     }
 
-    public void ObjectCreate()
+    public void ObjectCreate(int qnum)
     {
         Vector3 pos = new Vector3(transform.position.x, transform.position.y + getY, transform.position.z);
         obj = Instantiate(genObject, pos, Quaternion.Euler(RotationX, RotationY, RotationZ));
         obj.transform.parent = this.transform;
+
+        if (qnum != 0)
+        {
+            obj.GetComponent<AnswerCorrectWrong>().count = qnum;
+        }
     }
 }

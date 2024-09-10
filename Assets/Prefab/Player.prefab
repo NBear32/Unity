@@ -555,6 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeedSet: 4
   LockRotation: 0
+  playerName: {fileID: 1788211008073641187}
   stopAnime: Idle
   moveAnime: Walk
   runAnime: Run

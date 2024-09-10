@@ -12,7 +12,7 @@ public class AnswerCorrectWrong : MonoBehaviour
     bool isCorrect;
     public int getNumber = 0;
     UIController uiController;
-    int count = 0;
+    public int count;
 
     CameraShake Camera;
 
@@ -53,12 +53,13 @@ public class AnswerCorrectWrong : MonoBehaviour
             {
                 Camera.VibrateForTime(0.2f);
                 uiController.RunningResult[count] = false;
+                Debug.Log("RunningResult" + count + ": " + uiController.RunningResult[count]);
             }
             else if (switchIcon == 2)
             {
                 uiController.RunningResult[count] = true;
+                Debug.Log("RunningResult" + count + ": " + uiController.RunningResult[count]);
             }
-            count++;
 
             Debug.Log(switchIcon);
         }

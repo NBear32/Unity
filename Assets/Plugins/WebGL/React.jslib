@@ -8,4 +8,7 @@ mergeInto(LibraryManager.library, {
   OpenReactWindow: function (roomName) {
     window.dispatchReactUnityEvent("OpenReactWindow", UTF8ToString(roomName));
   },
+  GameReady: function() {
+    window.dispatchReactUnityEvent("GameReady");
+  }
 });

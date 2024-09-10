@@ -28,7 +28,6 @@ public class QuizEnter : MonoBehaviour
         {
             objectGenManager.isFinishOn = true;
             GameObject.FindGameObjectWithTag("SceneStatus").GetComponent<SceneStatusManager>().sceneState = SceneStatusManager.SceneStatus.Finish;
-            Debug.Log("isFinish");
         }
         else if (!isExit)
         {

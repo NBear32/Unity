@@ -42,7 +42,7 @@ public class ObjectGenManager : MonoBehaviour
             if (genNumbers.Count == (i + 1))
             {
                 ObjectGenPoint objgen = objGens[index];
-                objgen.ObjectCreate();
+                objgen.ObjectCreate(qnum);
                 i = i + 1;
             }
         }
@@ -53,7 +53,6 @@ public class ObjectGenManager : MonoBehaviour
     {
         if (isFinishOn)
         {
-            Debug.Log(isFinishOn);
             return;
         }
 
@@ -63,6 +62,7 @@ public class ObjectGenManager : MonoBehaviour
 
             if (!isShuffled)
             {
+                qnum = qnum - 1;
                 UIController.MyData[] questions = uiController.Questions;
 
                 question = questions[qnum].question;
@@ -118,10 +118,10 @@ public class ObjectGenManager : MonoBehaviour
             uiController.answerIcon.SetActive(false);
             uiController.UIText.text = "";
             Debug.Log("Επΐε");
-            if (qnum <= 2)
+       /*     if (qnum <= 2)
             {
                 qnum = qnum + 1;
-            }
+            }*/
             isExitOn = false;
         }
 
