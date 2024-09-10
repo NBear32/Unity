@@ -4241,7 +4241,7 @@ PrefabInstance:
     - target: {fileID: 3240229078290883575, guid: 34a1fefb38a22214196d3c353e04a2b9,
         type: 3}
       propertyPath: Roomname
-      value: "\uB2EC\uB9AC\uAE30 \uB9F5 (\uC784\uC2DC)"
+      value: "\uD034\uC988 \uAC8C\uC784"
       objectReference: {fileID: 0}
     - target: {fileID: 3240229078290883575, guid: 34a1fefb38a22214196d3c353e04a2b9,
         type: 3}
