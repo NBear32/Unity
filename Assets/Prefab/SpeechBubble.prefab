@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1410722278764236049}
   - component: {fileID: -2127631564556840177}
+  - component: {fileID: 7475871898562063614}
+  - component: {fileID: 525952006163062112}
   m_Layer: 0
-  m_Name: SpeachBubble
+  m_Name: SpeechBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,6 +47,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7c68ab834e676418f690c3dfb70d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isIcon: 0
+--- !u!135 &7475871898562063614
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2658956090251738918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.6510487
+  m_Center: {x: 0, y: -2.0326679, z: 0}
+--- !u!114 &525952006163062112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2658956090251738918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1301f42cf5bdc6468c2f99bb6a1ec7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubble: {fileID: 5057371964120804733}
+  speechText: {fileID: 5057371964745822603}
+  speech: 
 --- !u!1 &5057371964120804733
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,8 +103,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5057371964120804733}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.47764504, y: 0.33880335, z: 0.33880335}
+  m_LocalPosition: {x: 0, y: -0.5369, z: 0}
+  m_LocalScale: {x: 0.47764504, y: 0.33880335, z: 0.23143657}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5057371965232765043}
@@ -171,8 +202,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5057371964745822601}
   m_LocalRotation: {x: -0, y: -0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.70932007, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.18}
+  m_LocalScale: {x: 0.70932007, y: 1.4639145, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5057371964120804729}
@@ -180,8 +211,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.16, y: 0}
-  m_SizeDelta: {x: 9.4785, y: 5.8034}
+  m_AnchoredPosition: {x: -0.04, y: -0}
+  m_SizeDelta: {x: 9.479, y: 4.012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &5057371964745822602
 MeshRenderer:
@@ -245,7 +276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "********************************************************************************\uC784\uC2DC\uD14D\uC2A4\uD2B8********************************************************************************"
+  m_text: "\uC784\uC2DC\uD14D\uC2A4\uD2B8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 09669155554aac745998bbd29dc85137, type: 2}
   m_sharedMaterial: {fileID: 6652292576821907231, guid: 09669155554aac745998bbd29dc85137,
