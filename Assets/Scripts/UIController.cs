@@ -27,6 +27,7 @@ public class UIController : MonoBehaviour
     public GameObject EnterKeyInfo;
     public GameObject UI;
     public GameObject RunningResultUI;
+    public GameObject RunningMapEmptyDataUI;
     public bool[] RunningResult;
     public bool isRunningEnd = false;
 
@@ -150,6 +151,7 @@ public class UIController : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         RunningResultUI.SetActive(false);
+        RunningMapEmptyDataUI.SetActive(false);
 
         Debug.Log(SceneManager.GetActiveScene().name);
         Debug.Log(SceneManager.GetActiveScene().name == "RunningMap");
@@ -205,6 +207,7 @@ public class UIController : MonoBehaviour
         {
             RunningMapQuizPanel.SetActive(false);
             EnterKeyInfo.SetActive(true);
+            Questions = null;
         }
         answerIcon.SetActive(false);
 

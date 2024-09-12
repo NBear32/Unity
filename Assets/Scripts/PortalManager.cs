@@ -28,6 +28,7 @@ public class PortalManager : MonoBehaviour
     float waitingTime = 1.0f;
     UIController uiController;
     public string Roomname;
+    public GameObject schoolMapUI;
 
     private bool isPaused = false;
     public void TogglePause()
@@ -55,12 +56,20 @@ public class PortalManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "Lobby")
+        {
+            schoolMapUI = GameObject.FindGameObjectWithTag("MapDisplay");
+        }
+    }
+
     void Start()
     {
         portals = GameObject.FindGameObjectsWithTag("Exit");
         uiController = GameObject.FindGameObjectWithTag("UITextBar").GetComponent<UIController>();
-        //uiController.Image.SetActive(false);
-
+        schoolMapUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -77,6 +86,16 @@ public class PortalManager : MonoBehaviour
                 {
                     string scene = SceneManager.GetActiveScene().name;
 
+                    if (sceneName == "RunningMap")
+                    {
+                        UIController.MyData[] Questions = GameObject.FindGameObjectWithTag("UITextBar").GetComponent<UIController>().Questions;
+                        if (Questions[0].question == null)
+                        {
+                            uiController.RunningMapEmptyDataUI.SetActive(true);
+                            Debug.Log("Empty Data");
+                            break;
+                        }
+                    }
                     if (scene != sceneName)
                     {
                         SceneManager.LoadScene(sceneName);
@@ -131,6 +150,10 @@ public class PortalManager : MonoBehaviour
             isPortal = true;
             uiController.Image.SetActive(true);
             if (Roomname != null) uiController.UIText.text = Roomname;
+            if (Roomname == "¸Ê ¾È³»")
+            {
+                schoolMapUI.SetActive(true);
+            }
             if (Roomname == "°øÁö»çÇ×" ||
                 Roomname == "È¸¿øÁ¤º¸" ||
                 Roomname == "È¸¿øÅ»Åð" ||

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChrNameController : MonoBehaviour
 {
     Transform lookAtCamera;
+    public bool isIcon = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,13 @@ public class ChrNameController : MonoBehaviour
 
     void LateUpdate()
     {
-        transform.rotation = Quaternion.Euler(lookAtCamera.eulerAngles.x, 0, 0);
+        if (isIcon)
+        {
+            transform.rotation = Quaternion.Euler(lookAtCamera.eulerAngles.x, 180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(lookAtCamera.eulerAngles.x, 0, 0);
+        }
     }
 }
